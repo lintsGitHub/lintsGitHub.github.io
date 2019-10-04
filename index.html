@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- 360等浏览器默认使用webkit内核 -->
-  <meta name="renderer" content="webkit" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bio</title>
-<link rel="shortcut icon" href="favicon.ico"><link href="styles.7eb715.css" rel="stylesheet"></head>
-<body>
-  <div id="root"></div>
-<script type="text/javascript" src="mainifest.81f681.js"></script><script type="text/javascript" src="vendor.8bdb2d.js"></script><script type="text/javascript" src="app.1ff881.js"></script></body>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			{{LoveTime}}
+		</div>
+	</body>
+	<script type="text/javascript">
+		new Vue({
+			el:"#app",
+			data(){
+				return{
+						startLoveTime:"2019-09-15 00:45",
+					LoveTime : ""
+				}
+			},
+			created(){
+				setInterval(()=>{
+								let loveTime = new Date(this.startLoveTime);
+								let nowTime = new Date();
+								let total = (nowTime - loveTime)/1000;
+								let days=Math.floor(total/3600/24);
+				        var hours=Math.floor((total-days*24*3600)/3600);
+				        var mins=Math.floor((total-days*24*3600-hours*3600)/60);
+				        var secs=Math.floor((total-days*24*3600-hours*3600-mins*60));
+								this.LoveTime = days+"天"+hours+"小时"+mins+"分钟"+secs+"秒";
+							},1000);
+			}
+		})
+	</script>
 </html>
+
